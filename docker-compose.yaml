@@ -1,0 +1,16 @@
+version: "3"
+services:
+    database:
+        image: "postgres:10.5"
+        container_name: "super-database"
+        ports:
+            - "5432:5432"
+        volumes:
+            - init_db.sql:/docker-entrypoint-initdb.d/init.sql
+            
+    psb-register:
+        image: "eproches.azurecr.io/psb-registration:36"
+        container_name: "register"
+        ports:
+            - "8084:8084"
+    # todo: add more services
